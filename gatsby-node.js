@@ -20,7 +20,7 @@ exports.createPages = ({ actions, graphql }) => {
   
   const getArticles = makeRequest(graphql, `
     {
-      allStrapiArticle {
+      allStrapiArticles {
         edges {
           node {
             id
@@ -30,7 +30,7 @@ exports.createPages = ({ actions, graphql }) => {
     }
     `).then(result => {
     // Create pages for each article.
-    result.data.allStrapiArticle.edges.forEach(({ node }) => {
+    result.data.allStrapiArticles.edges.forEach(({ node }) => {
       createPage({
         path: `/${node.id}`,
         component: path.resolve(`src/templates/article.js`),

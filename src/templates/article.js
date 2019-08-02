@@ -8,10 +8,10 @@ const ArticleTemplate = ({ data }) => {
 	return(
 
   <Layout>
-    <h1>{data.strapiArticle.title}</h1>
-		<p> by <Link to={`/authors/User_${data.strapiArticle.author.id}`}>{data.strapiArticle.author.username}</Link></p>
-		<Img fluid = {data.strapiArticle.featureimage.childImageSharp.fluid} />
-    <p>{data.strapiArticle.Content}</p>
+    <h1>{data.strapiArticles.title}</h1>
+		<p> by <Link to={`/authors/User_${data.strapiArticles.author.id}`}>{data.strapiArticles.author.username}</Link></p>
+		<Img fluid = {data.strapiArticles.featureimage.childImageSharp.fluid} />
+    <p>{data.strapiArticles.Content}</p>
   </Layout>
 	)
 }
@@ -22,7 +22,7 @@ export default ArticleTemplate
 
 export const query = graphql`
   query ArticleTemplate($id: String!) {
-    strapiArticle(id: {eq: $id}) {
+    strapiArticles(id: {eq: $id}) {
       title
 			Content
 			featureimage {
