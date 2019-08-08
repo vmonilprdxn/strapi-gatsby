@@ -1,24 +1,27 @@
-const path = require(`path`);
+const path = require(`path`)
 
-const makeRequest = (graphql, request) => new Promise((resolve, reject) => {
-  // Query for nodes to use in creating pages.
-  resolve(
-    graphql(request).then(result => {
-      if (result.errors) {
-        reject(result.errors)
-      }
-      
-      return result;
-    })
-  )
-});
+const makeRequest = (graphql, request) =>
+  new Promise((resolve, reject) => {
+    // Query for nodes to use in creating pages.
+    resolve(
+      graphql(request).then(result => {
+        if (result.errors) {
+          reject(result.errors)
+        }
+
+        return result
+      })
+    )
+  })
 
 // Implement the Gatsby API “createPages”. This is called once the
 // data layer is bootstrapped to let plugins create pages from data.
 exports.createPages = ({ actions, graphql }) => {
-  const { createPage } = actions;
-  
-  const getArticles = makeRequest(graphql, `
+  const { createPage } = actions
+
+  const getArticles = makeRequest(
+    graphql,
+    `
     {
       allStrapiArticles {
         edges {
@@ -28,7 +31,8 @@ exports.createPages = ({ actions, graphql }) => {
         }
       }
     }
-    `).then(result => {
+    `
+  ).then(result => {
     // Create pages for each article.
     result.data.allStrapiArticles.edges.forEach(({ node }) => {
       createPage({
@@ -39,9 +43,11 @@ exports.createPages = ({ actions, graphql }) => {
         },
       })
     })
-	});
-	
-	const getAuthors = makeRequest(graphql, `
+  })
+
+  const getAuthors = makeRequest(
+    graphql,
+    `
     {
       allStrapiUser {
         edges {
@@ -51,7 +57,8 @@ exports.createPages = ({ actions, graphql }) => {
         }
       }
     }
-    `).then(result => {
+    `
+  ).then(result => {
     // Create pages for each user.
     result.data.allStrapiUser.edges.forEach(({ node }) => {
       createPage({
@@ -62,11 +69,8 @@ exports.createPages = ({ actions, graphql }) => {
         },
       })
     })
-  });
+  })
 
   // Queries for articles and authors nodes to use in creating pages.
-  return Promise.all([
-    getArticles,
-    getAuthors,
-  ])
-};
+  return Promise.all([getArticles, getAuthors])
+}
