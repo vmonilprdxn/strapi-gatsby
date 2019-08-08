@@ -25,6 +25,7 @@ const UserTemplate = ({ data }) => {
 
 export default UserTemplate
 
+//author article query
 export const query = graphql`
   query UserTemplate($id: String!) {
     strapiUser(id: { eq: $id }) {
