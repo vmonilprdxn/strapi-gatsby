@@ -17,7 +17,7 @@ const ArticleTemplate = ({ data }) => {
           {data.strapiArticles.author.username}
         </Link>
       </p>
-      <Img src={data.strapiArticles.featureimage.url} />
+      <img src={data.strapiArticles.featureimage.url} />
       <p>{data.strapiArticles.Content}</p>
     </Layout>
   )

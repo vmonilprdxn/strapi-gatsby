@@ -17,7 +17,7 @@ const IndexPage = ({ data }) => (
           <h2>
             <Link to={`/${document.node.id}`}>{document.node.title}</Link>
           </h2>
-          <Img fluid={document.node.featureimage.url} />
+          <img src={document.node.featureimage.url} />
           <p>{document.node.Content}</p>
         </li>
       ))}
