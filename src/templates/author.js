@@ -1,10 +1,13 @@
-import React from 'react'
-import { Link, graphql } from 'gatsby'
-import Layout from '../components/layout'
+import React from "react"
+import { Link, graphql } from "gatsby"
+import Layout from "../components/layout"
 
 const UserTemplate = ({ data }) => {
-    {console.log(data)}
-    return( <Layout>
+  {
+    console.log(data)
+  }
+  return (
+    <Layout>
       <h1>{data.strapiUser.username}</h1>
       <ul>
         {data.strapiUser.articles.map(article => (
@@ -16,9 +19,10 @@ const UserTemplate = ({ data }) => {
           </li>
         ))}
       </ul>
-    </Layout>)
+    </Layout>
+  )
 }
-  
+
 export default UserTemplate
 
 export const query = graphql`
@@ -29,8 +33,8 @@ export const query = graphql`
       articles {
         id
         title
-        Content 
+        Content
       }
     }
   }
-` 
+`
