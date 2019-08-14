@@ -1,6 +1,7 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
 import Layout from "../components/layout"
+import Reactmarkdown from "react-markdown"
 
 const UserTemplate = ({ data }) => {
   {
@@ -15,7 +16,11 @@ const UserTemplate = ({ data }) => {
             <h2>
               <Link to={`/Articles_${article.id}`}>{article.title}</Link>
             </h2>
-            <p>{article.Content}</p>
+            {/* <p>{article.Content}</p> */}
+            <Reactmarkdown
+              source={article.Content.substring(0, 500).concat("...")}
+            />
+            <Link to={`/Articles_${article.id}`}>Read More</Link>
           </li>
         ))}
       </ul>

@@ -3,6 +3,7 @@ import { Link, graphql } from "gatsby"
 import Img from "gatsby-image"
 
 import Layout from "../components/layout"
+import Reactmarkdown from "react-markdown"
 
 const IndexPage = ({ data }) => (
   <Layout>
@@ -18,7 +19,12 @@ const IndexPage = ({ data }) => (
             <Link to={`/${document.node.id}`}>{document.node.title}</Link>
           </h2>
           <img src={document.node.featureimage.url} />
-          <p>{document.node.Content}</p>
+          {/* <p>{document.node.Content}</p> */}
+          <Reactmarkdown
+            source={document.node.Content.substring(0, 500).concat("...")}
+            escapeHtml={false}
+          />
+          <Link to={`/${document.node.id}`}>Read More</Link>
         </li>
       ))}
     </ul>
